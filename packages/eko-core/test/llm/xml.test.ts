@@ -6,22 +6,22 @@ import {
 
 test.only("workflowXml", () => {
   const xml = `<root>
-  <name>AI Daily Morning Report</name>
-  <thought>OK, the user needs to collect the latest AI news every morning, summarize it, and send it to a WeChat group named "AI Daily Morning Report" This requires automation, including the steps of data collection, processing, and distribution.</thought>
+  <name>Terminal File Backup</name>
+  <thought>The user needs to create a backup system for project files using terminal commands. This requires file operations and shell commands.</thought>
   <agents>
-    <agent name="Browser">
-      <task>Search for the latest updates on AI</task>
+    <agent name="File">
+      <task>Scan and identify project files</task>
       <nodes>
-        <node>Open Google</node>
-        <node>Search for the latest updates on AI</node>
+        <node>List all project files</node>
+        <node>Filter important files</node>
         <forEach items="list">
-          <node>View Details</node>
+          <node>Check file details</node>
         </forEach>
-        <node output="summaryInfo">Summarize search information</node>
+        <node output="fileList">Compile file list for backup</node>
       </nodes>
     </agent>
-    <agent name="Computer">
-      <task>Send a message to the WeChat group chat "AI Daily Morning Report"</task>
+    <agent name="Shell">
+      <task>Create backup archive</task>
       <nodes>
         <node>Open WeChat</node>
         <node>Search for the "AI Daily Morning Report" chat group</node>
@@ -31,7 +31,7 @@ test.only("workflowXml", () => {
 });
 
 test.only("agentXml", () => {
-  const xml = `<agent name="Browser">
+  const xml = `<agent name="File">
   <task>The current Agent needs to complete the task</task>
   <nodes>
     <node>Complete the corresponding step nodes of the task</node>
@@ -40,7 +40,7 @@ test.only("agentXml", () => {
     <forEach items="list">
       <node>forEach step node</node>
     </forEach>
-    <watch event="dom" loop="true">
+    <watch event="file" loop="true">
       <description>Monitor task description</description>
       <trigger>
         <node>Trigger step node</node>
@@ -59,8 +59,8 @@ test.only("buildWorkflow", () => {
   const workflow = buildSimpleAgentWorkflow({
     taskId: "test",
     name: "Test workflow",
-    agentName: "Browser",
-    task: "Open google",
+    agentName: "File",
+    task: "List project files",
   });
   console.log("workflow: \n", JSON.stringify(workflow, null, 2));
 });

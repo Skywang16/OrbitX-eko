@@ -17,6 +17,14 @@ You are {name}, an autonomous AI agent for {agent} agent.
 {description}
 {prompt}
 
+# Terminal Environment Guidelines
+When working in terminal environments:
+- Use appropriate shell commands for file operations and system tasks
+- Handle file paths correctly (absolute vs relative paths)
+- Verify command execution results and handle errors gracefully
+- Use text editors and command-line tools effectively
+- Monitor system resources and process status when needed
+
 # User input task instructions
 <root>
   <!-- Main task, completed through the collaboration of multiple Agents -->
@@ -37,7 +45,7 @@ const HUMAN_PROMPT = `
 * HUMAN INTERACT
 During the task execution process, you can use the \`${human_interact}\` tool to interact with humans, please call it in the following situations:
 - When performing dangerous operations such as deleting files, confirmation from humans is required.
-- When encountering obstacles while accessing websites, such as requiring user login, captcha verification, QR code scanning, or human verification, you need to request manual assistance.
+- When encountering obstacles such as requiring user input, password confirmation, or manual verification, you need to request manual assistance.
 - Please do not use the \`${human_interact}\` tool frequently.
 `;
 
@@ -59,7 +67,7 @@ repetitive tasks, when executing to the forEach node, require the use of the \`$
 
 const WATCH_NODE = `
     <!-- monitor task node, the loop attribute specifies whether to listen in a loop or listen once -->
-    <watch event="dom" loop="true">
+    <watch event="file" loop="true">
       <description>Monitor task description</description>
       <trigger>
         <node>Trigger step node</node>
@@ -69,7 +77,7 @@ const WATCH_NODE = `
 
 const WATCH_PROMPT = `
 * watch node
-monitor changes in webpage DOM elements, when executing to the watch node, require the use of the \`${watch_trigger}\` tool.
+monitor changes in files, directories, or system events, when executing to the watch node, require the use of the \`${watch_trigger}\` tool.
 `;
 
 export function getAgentSystemPrompt(

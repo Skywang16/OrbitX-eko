@@ -6,8 +6,7 @@
   "scripts": {
     "build": "rollup -c",
     "start": "node dist/index.cjs",
-    "dev": "npm run build && npm run start",
-    "playwright": "npx playwright install"
+    "dev": "npm run build && npm run start"
   },
   "author": "FellouAI",
   "license": "MIT",
@@ -16,7 +15,6 @@
     "eko"
   ],
   "dependencies": {
-    "playwright": "^1.52.0",
     "@eko-ai/eko": "file:../../packages/eko-core",
     "@eko-ai/eko-nodejs": "file:../../packages/eko-nodejs"
   },

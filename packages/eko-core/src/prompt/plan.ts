@@ -87,149 +87,138 @@ Output result:
 </root>`;
 
 const PLAN_EXAMPLE_LIST = [
-  `User: Open Boss Zhipin, find 10 operation positions in Chengdu, and send a personal introduction to the recruiters based on the page information.
+  `User: Create a backup script that compresses all project files in the current directory and saves them with timestamp.
 Output result:
 <root>
-  <name>Submit resume</name>
-  <thought>OK, now the user requests me to create a workflow that involves opening the Boss Zhipin website, finding 10 operation positions in Chengdu, and sending personal resumes to the recruiters based on the job information.</thought>
+  <name>Create backup script</name>
+  <thought>The user wants me to create a backup script that compresses project files with timestamp. This involves file operations and shell commands.</thought>
   <agents>
-    <agent name="Browser" id="0" dependsOn="">
-      <task>Open Boss Zhipin, find 10 operation positions in Chengdu, and send a personal introduction to the recruiters based on the page information.</task>
+    <agent name="Shell" id="0" dependsOn="">
+      <task>Create a backup script that compresses all project files in the current directory and saves them with timestamp.</task>
       <nodes>
-        <node>Open Boss Zhipin, enter the job search page</node>
-        <node>Set the regional filter to Chengdu and search for operational positions.</node>
-        <node>Brows the job list and filter out 10 suitable operation positions.</node>
-        <forEach items="list">
-          <node>Analyze job requirements</node>
-          <node>Send a self-introduction to the recruiter</node>
+        <node>Get current directory path</node>
+        <node>Generate timestamp for backup filename</node>
+        <node>Create tar.gz archive of all project files</node>
+        <node>Verify backup file was created successfully</node>
+        <node output="backupPath">Save backup file path for reference</node>
+      </nodes>
+    </agent>
+  </agents>
+</root>`,
+  `User: Find all Python files in the project, analyze their imports, and generate a dependency report.
+Output result:
+<root>
+  <name>Python Dependency Analysis</name>
+  <thought>The user wants to analyze Python files and their imports to generate a dependency report. This involves file operations and text processing.</thought>
+  <agents>
+    <agent name="File" id="0" dependsOn="">
+      <task>Find and analyze Python files for imports</task>
+      <nodes>
+        <node>Search for all .py files in the project directory</node>
+        <node>Read each Python file content</node>
+        <forEach items="python_files">
+          <node>Extract import statements from file</node>
+          <node>Parse import dependencies</node>
         </forEach>
+        <node output="dependencyData">Compile dependency information</node>
+      </nodes>
+    </agent>
+    <agent name="File" id="1" dependsOn="0">
+      <task>Generate dependency report</task>
+      <nodes>
+        <node input="dependencyData">Process dependency data</node>
+        <node>Format report with statistics</node>
+        <node>Save report to dependency_report.txt</node>
       </nodes>
     </agent>
   </agents>
 </root>`,
-  `User: Help me collect the latest AI news, summarize it, and send it to the "AI news information" group chat on WeChat.
+  `User: Monitor system logs for error patterns and create an automated alert system.
 Output result:
 <root>
-  <name>Latest AI News</name>
-  <thought>OK, users need to collect the latest AI news, summarize it, and send it to a WeChat group named "AI news information" This requires automation, including the steps of data collection, processing, and distribution.</thought>
+  <name>System Log Monitor and Alert System</name>
+  <thought>The user wants to monitor system logs for error patterns and create alerts. This involves file monitoring, text processing, and system operations.</thought>
   <agents>
-    <agent name="Browser" id="0" dependsOn="">
-      <task>Search for the latest updates on AI</task>
+    <agent name="Shell" id="0" dependsOn="">
+      <task>Set up log monitoring and pattern detection</task>
       <nodes>
-        <node>Open Google</node>
-        <node>Search for the latest updates on AI</node>
-        <forEach items="list">
-          <node>View Details</node>
+        <node>Identify system log file locations</node>
+        <node>Create log monitoring script</node>
+        <node>Define error patterns to watch for</node>
+        <node output="logPatterns">Save pattern definitions</node>
+        <forEach items="log_files">
+          <node>Set up file monitoring for each log</node>
+          <node>Configure pattern matching rules</node>
         </forEach>
-        <node output="summaryInfo">Summarize search information</node>
-      </nodes>
-    </agent>
-    <agent name="Computer" id="1" dependsOn="0">
-      <task>Send a message to the WeChat group chat "AI news information"</task>
-      <nodes>
-        <node>Open WeChat</node>
-        <node>Search for the "AI news information" chat group</node>
-        <node input="summaryInfo">Send summary message</node>
+        <node>Test monitoring system functionality</node>
       </nodes>
     </agent>
   </agents>
 </root>`,
-  `User: Access the Google team's organization page on GitHub, extract all developer accounts from the team, and compile statistics on the countries and regions where these developers are located.
+  `User: Set up a development environment with Node.js, install project dependencies, and run tests.
 Output result:
 <root>
-  <name>Statistics of Google Team Developers' Geographic Distribution</name>
-  <thought>Okay, I need to first visit GitHub, then find Google's organization page on GitHub, extract the team member list, and individually visit each developer's homepage to obtain location information for each developer. This requires using a browser to complete all operations.</thought>
+  <name>Development Environment Setup</name>
+  <thought>The user wants to set up a development environment with Node.js, install dependencies, and run tests. This involves shell commands and file operations.</thought>
   <agents>
-    <agent name="Browser" id="0" dependsOn="">
-      <task>Visit Google GitHub Organization Page and Analyze Developer Geographic Distribution</task>
+    <agent name="Shell" id="0" dependsOn="">
+      <task>Set up Node.js development environment</task>
       <nodes>
-        <node>Visit https://github.com/google</node>
-        <node>Click "People" tab to view team members</node>
-        <node>Scroll the page to load all developer information</node>
-        <node output="developers">Extract all developer account information</node>
-        <forEach items="developers">
-          <node>Visit developer's homepage</node>
-          <node>Extract developer's location information</node>
-        </forEach>
-        <node>Compile and analyze the geographic distribution data of all developers</node>
+        <node>Check if Node.js is installed</node>
+        <node>Install Node.js if not present</node>
+        <node>Verify npm is available</node>
+        <node>Navigate to project directory</node>
+        <node>Install project dependencies using npm install</node>
+        <node>Run project tests using npm test</node>
+        <node>Generate test coverage report</node>
       </nodes>
     </agent>
   </agents>
 </root>`,
-  `User: Open Discord to monitor messages in Group A, and automatically reply when new messages are received.
+`User: Analyze code quality across multiple programming languages in a project, generate reports, and set up automated code formatting.
 Output result:
 <root>
-  <name>Automatic reply to Discord messages</name>
-  <thought>OK, monitor the chat messages in Discord group A and automatically reply.</thought>
-  <agents>
-    <agent name="Browser" id="0" dependsOn="">
-      <task>Open Group A in Discord</task>
-      <nodes>
-        <node>Open Discord page</node>
-        <node>Find and open Group A</node>
-        <watch event="dom" loop="true">
-          <description>Monitor new messages in group chat</description>
-          <trigger>
-            <node>Analyze message content</node>
-            <node>Automatic reply to new messages</node>
-          </trigger>
-        </watch>
-      </nodes>
-    </agent>
-  </agents>
-</root>`,
-`User: Search for information about "fellou," compile the results into a summary profile, then share it across social media platforms including Twitter, Facebook, and Reddit. Finally, export the platform sharing operation results to an Excel file.
-Output result:
-<root>
-<name>Fellou Research and Social Media Campaign</name>
-<thought>The user wants me to research information about 'Fellou', create a summary profile, share it on multiple social media platforms (Twitter, Facebook, Reddit), and then compile the results into an Excel file. This requires multiple agents working together: Browser for research, Browser for social media posting (Twitter, Facebook, and Reddit in parallel), and File for creating the Excel export. I need to break this down into sequential steps with proper variable passing between agents.</thought>
+<name>Code Quality Analysis and Formatting Setup</name>
+<thought>The user wants to analyze code quality across multiple programming languages, generate reports, and set up automated formatting. This involves file operations, shell commands, and text processing across different agents.</thought>
 <agents>
-  <agent name="Browser" id="0" dependsOn="">
-      <task>Research comprehensive information about 'Fellou'</task>
+  <agent name="File" id="0" dependsOn="">
+      <task>Scan project for different programming languages</task>
       <nodes>
-        <node>Search for the latest information about 'Fellou' - its identity, purpose, and core features</node>
-        <node>Search for Fellou's functionalities, capabilities, and technical specifications</node>
-        <node>Search for recent news, updates, announcements, and developments related to Fellou</node>
-        <node>Search for user reviews, feedback, and community discussions about Fellou</node>
-        <node>Search for Fellou's market position, competitors, and industry context</node>
-        <node output="researchData">Compile all research findings into a comprehensive summary profile</node>
+        <node>Identify all source code files in the project</node>
+        <node>Categorize files by programming language</node>
+        <node>Count lines of code for each language</node>
+        <node>Analyze file structure and organization</node>
+        <node output="projectStructure">Compile project structure analysis</node>
       </nodes>
     </agent>
-    <agent name="Browser" id="1" dependsOn="0">
-      <task>Share Fellou's summary and collected interaction data on Twitter/X</task>
+    <agent name="Shell" id="1" dependsOn="0">
+      <task>Run code quality analysis tools</task>
       <nodes>
-        <node>Navigate to Twitter/X platform</node>
-        <node input="researchData">Create and post Twitter-optimized content about Fellou (within character limits, using hashtags)</node>
-        <node output="twitterResults">Capture Twitter post URL and initial engagement metrics</node>
+        <node>Install necessary code analysis tools (eslint, pylint, etc.)</node>
+        <node input="projectStructure">Run language-specific linters and analyzers</node>
+        <node>Collect code quality metrics and issues</node>
+        <node output="qualityResults">Generate quality analysis results</node>
       </nodes>
     </agent>
-    <agent name="Browser" id="2" dependsOn="0">
-      <task>Share Fellou's summary and collected interaction data on Facebook</task>
+    <agent name="Shell" id="2" dependsOn="0">
+      <task>Set up automated code formatting</task>
       <nodes>
-        <node>Navigate to Facebook platform</node>
-        <node input="researchData">Create and post Facebook-optimized content about Fellou (longer format, engaging description)</node>
-        <node output="facebookResults">Capture Facebook post URL and initial engagement metrics</node>
+        <node>Install code formatters (prettier, black, gofmt, etc.)</node>
+        <node input="projectStructure">Configure formatting rules for each language</node>
+        <node>Create pre-commit hooks for automatic formatting</node>
+        <node output="formattingSetup">Document formatting configuration</node>
       </nodes>
     </agent>
-    <agent name="Browser" id="3" dependsOn="0">
-      <task>Share Fellou's summary and collected interaction data on Reddit</task>
+    <agent name="File" id="3" dependsOn="1,2">
+      <task>Generate comprehensive code quality report</task>
       <nodes>
-        <node>Navigate to Reddit platform</node>
-        <node input="researchData">Find appropriate subreddit and create Reddit-optimized post about Fellou (community-focused, informative)</node>
-        <node output="redditResults">Capture Reddit post URL and initial engagement metrics</node>
-      </nodes>
-    </agent>
-    <agent name="File" id="4" dependsOn="1,2,3">
-      <task>Compile social media results into Excel file</task>
-      <nodes>
-        <node input="twitterResults,facebookResults,redditResults">Create Excel file with social media campaign results</node>
-        <node>Include columns for Platform, Post URL, Content Summary, Timestamp, Initial Likes/Shares/Comments</node>
-        <node>Format the Excel file with proper headers and styling</node>
-        <node>Save the file as 'Fellou_Social_Media_Campaign_Results.xlsx'</node>
+        <node input="qualityResults,formattingSetup">Compile analysis results into report</node>
+        <node>Create summary statistics and recommendations</node>
+        <node>Format report with charts and tables</node>
+        <node>Save report as 'Code_Quality_Analysis_Report.md'</node>
       </nodes>
     </agent>
   </agents>
-</agents>
 </root>`,
 ];
 

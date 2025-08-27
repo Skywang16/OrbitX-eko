@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import SimpleChatAgent from "./chat";
-import { BrowserAgent, FileAgent } from "@eko-ai/eko-nodejs";
+import { FileAgent } from "@eko-ai/eko-nodejs";
 import { Eko, Agent, Log, LLMs, StreamCallbackMessage } from "@eko-ai/eko";
 
 dotenv.config();
@@ -46,11 +46,11 @@ const callback = {
 
 async function run() {
   Log.setLevel(1);
-  const agents: Agent[] = [new SimpleChatAgent(), new BrowserAgent(), new FileAgent()];
+  const agents: Agent[] = [new SimpleChatAgent(), new FileAgent()];
   const eko = new Eko({ llms, agents, callback });
   // let result = await eko.run("How is the weather in Beijing?");
   const result = await eko.run(
-    "Search for the latest news about Musk, summarize and save to the desktop as Musk.md"
+    "Create a backup script for all project files and save it as backup.sh"
   );
   console.log("result: ", result.result);
 }

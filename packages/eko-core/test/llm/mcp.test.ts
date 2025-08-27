@@ -10,10 +10,9 @@ async function testSseMCP() {
   let tools = await mcpClient.listTools({
     taskId: "1",
     nodeId: "1",
-    environment: "browser",
-    agent_name: "Browser",
-    prompt: "Search for Hong Kong AI development jobs",
-    browser_url: "https://www.linkedin.com/jobs/",
+    environment: "terminal",
+    agent_name: "Terminal",
+    prompt: "Create backup script for project files",
     params: {},
   });
   console.log("listTools: \n", JSON.stringify(tools, null, 2));

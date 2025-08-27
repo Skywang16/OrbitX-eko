@@ -15,7 +15,7 @@ type GlobalConfig = {
 }
 
 const config: GlobalConfig = {
-  name: "Eko",
+  name: "OrbitX",
   platform: "mac",
   maxReactNum: 500,
   maxTokens: 16000,

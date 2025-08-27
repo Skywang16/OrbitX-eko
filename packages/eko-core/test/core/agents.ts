@@ -1,6 +1,6 @@
 import { Agent, AgentContext } from "../../src";
 import { ToolResult, IMcpClient } from "../../src/types";
-import { BaseBrowserLabelsAgent, BaseComputerAgent, BaseFileAgent } from "../../src/agent";
+import { BaseComputerAgent, BaseFileAgent } from "../../src/agent";
 
 export class SimpleChatAgent extends Agent {
   constructor(llms?: string[], mcpClient?: IMcpClient) {
@@ -39,23 +39,7 @@ export class SimpleChatAgent extends Agent {
   }
 }
 
-export class SimpleBrowserAgent extends BaseBrowserLabelsAgent {
-  protected screenshot(agentContext: AgentContext): Promise<{ imageBase64: string; imageType: "image/jpeg" | "image/png"; }> {
-    throw new Error("Method not implemented.");
-  }
-  protected navigate_to(agentContext: AgentContext, url: string): Promise<any> {
-    throw new Error("Method not implemented.");
-  }
-  protected execute_script(agentContext: AgentContext, func: (...args: any[]) => void, args: any[]): Promise<any> {
-    throw new Error("Method not implemented.");
-  }
-  protected get_all_tabs(agentContext: AgentContext): Promise<Array<{ tabId: number; url: string; title: string; }>> {
-    throw new Error("Method not implemented.");
-  }
-  protected switch_tab(agentContext: AgentContext, tabId: number): Promise<{ tabId: number; url: string; title: string; }> {
-    throw new Error("Method not implemented.");
-  }
-}
+
 
 export class SimpleComputerAgent extends BaseComputerAgent {
   protected screenshot(agentContext: AgentContext): Promise<{ imageBase64: string; imageType: "image/jpeg" | "image/png"; }> {

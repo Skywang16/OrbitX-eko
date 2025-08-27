@@ -8,8 +8,8 @@ async function testMcp() {
   ]);
   await mcpClient.connect();
   const tools = await mcpClient.listTools({
-    environment: "browser",
-    agent_name: "Browser",
+    environment: "terminal",
+    agent_name: "Terminal",
     prompt: "Hello, world!",
   });
   console.log("tools:", JSON.stringify(tools, null, 2));

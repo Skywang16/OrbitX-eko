@@ -8,7 +8,6 @@ import {
 } from "../../src/index";
 import dotenv from "dotenv";
 import {
-  SimpleBrowserAgent,
   SimpleChatAgent,
   SimpleComputerAgent,
   SimpleFileAgent,

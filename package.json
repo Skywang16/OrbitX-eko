@@ -4,9 +4,7 @@
   "description": "Empowering language to transform human words into action.",
   "workspaces": [
     "packages/eko-core",
-    "packages/eko-extension",
-    "packages/eko-nodejs",
-    "packages/eko-web"
+    "packages/eko-nodejs"
   ],
   "scripts": {
     "build": "pnpm -r --sequential build",

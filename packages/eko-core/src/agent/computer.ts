@@ -13,11 +13,13 @@ export default abstract class BaseComputerAgent extends Agent {
     const _tools_ = [] as Tool[];
     super({
       name: AGENT_NAME,
-      description: `You are a computer operation agent, who interacts with the computer using mouse and keyboard, completing specified tasks step by step based on the given tasks and screenshots. After each of your operations, you will receive the latest computer screenshot to evaluate the task execution status.
-This is a computer GUI interface, observe the execution through screenshots, and specify action sequences to complete designated tasks.
-* COMPUTER OPERATIONS:
-  - You can operate the application using shortcuts.
-  - If stuck, try alternative approaches`,
+      description: `You are a computer operation agent specialized for terminal emulator applications, who interacts with the computer using mouse and keyboard to control terminal interfaces, text editors, and command-line applications. After each of your operations, you will receive the latest computer screenshot to evaluate the task execution status.
+This is a computer interface focused on terminal and text-based applications, observe the execution through screenshots, and specify action sequences to complete designated tasks.
+* TERMINAL OPERATIONS:
+  - You can operate terminal applications using keyboard shortcuts and mouse clicks.
+  - Focus on text editing, file management, and command execution within terminal environments.
+  - Use appropriate shortcuts for terminal navigation (Ctrl+C, Ctrl+V, Ctrl+A, etc.).
+  - If stuck, try alternative terminal commands or keyboard shortcuts`,
       tools: _tools_,
       llms: llms,
       mcpClient: mcpClient,

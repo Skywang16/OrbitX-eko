@@ -14,11 +14,11 @@ type ImageSource = {
   imageType: "image/jpeg" | "image/png";
 };
 
-const watch_system_prompt = `You are a tool for detecting element changes. Given a task description, compare two images to determine whether the changes described in the task have occurred.
+const watch_system_prompt = `You are a tool for detecting system changes. Given a task description, compare two images to determine whether the changes described in the task have occurred.
 If the changes have occurred, return an json with \`changed\` set to true and \`changeInfo\` containing a description of the changes. If no changes have occurred, return an object with \`changed\` set to false.
 
 ## Example
-User: Monitor new messages in group chat
+User: Monitor file changes in directory
 ### No changes detected
 Output:
 {
@@ -28,7 +28,7 @@ Output:
 Output:
 {
   "changed": true,
-  "changeInfo": "New message received in the group chat. The message content is: 'Hello, how are you?'"
+  "changeInfo": "New file created in the directory. The file name is: 'backup.sh'"
 }`;
 
 export default class WatchTriggerTool implements Tool {
@@ -136,7 +136,7 @@ export default class WatchTriggerTool implements Tool {
           content: [
             {
               type: "text",
-              text: changeResult.changeInfo || "DOM change detected.",
+              text: changeResult.changeInfo || "System change detected.",
             },
           ],
         };
@@ -146,7 +146,7 @@ export default class WatchTriggerTool implements Tool {
       content: [
         {
           type: "text",
-          text: "Timeout reached, no DOM changes detected.",
+          text: "Timeout reached, no system changes detected.",
         },
       ],
     };

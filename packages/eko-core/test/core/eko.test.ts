@@ -6,7 +6,7 @@ import {
   StreamCallbackMessage,
 } from "../../src/index";
 import dotenv from "dotenv";
-import { SimpleBrowserAgent, SimpleChatAgent, SimpleFileAgent } from "./agents";
+import { SimpleChatAgent, SimpleFileAgent } from "./agents";
 
 dotenv.config();
 
@@ -42,7 +42,6 @@ async function run() {
   };
   const agents: Agent[] = [
     new SimpleChatAgent(),
-    new SimpleBrowserAgent(),
     new SimpleFileAgent(),
   ];
   const eko = new Eko({ llms, agents, callback });

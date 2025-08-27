@@ -1,1 +1,1 @@
-export { BrowserAgent } from "./browser";
+// Browser agent removed - this package is now empty

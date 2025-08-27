@@ -7,7 +7,6 @@ import {
 } from "../../src/index";
 import dotenv from "dotenv";
 import {
-  SimpleBrowserAgent,
   SimpleComputerAgent,
   SimpleFileAgent,
 } from "./agents";
@@ -57,7 +56,6 @@ async function run() {
     },
   };
   const agents: Agent[] = [
-    new SimpleBrowserAgent(),
     new SimpleComputerAgent(),
     new SimpleFileAgent(),
   ];
